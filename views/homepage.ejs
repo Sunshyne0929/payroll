@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll System - Homepage</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+</head>
+<body>
+    <div class="slider-container">
+        <!-- Left arrow to slide back -->
+        <div class="arrow left" id="left-arrow">&#10094;</div> 
+
+        <!-- Slider wrapper for the content -->
+        <div class="slider-wrapper" id="slider">
+            <!-- Home Section -->
+            <section class="slide">
+                <h1>Welcome to the Payroll System</h1>
+                <p>This is the homepage of your Payroll System built with Node.js.</p>
+                <a href="/signup" class="btn btn-primary btn-signup">Sign Up</a>
+            </section>
+
+            <!-- About Section -->
+            <section class="slide">
+                <h1>About Us</h1>
+                <p>We provide comprehensive payroll solutions for businesses to help manage employee payments, taxes, and benefits efficiently.</p>
+            </section>
+        </div>
+
+        <!-- Right arrow to slide forward -->
+        <div class="arrow right" id="right-arrow">&#10095;</div>
+    </div>
+
+    <script>
+        // JavaScript to handle sliding effect
+        let currentSlide = 0;
+
+        // Get the slider and the total number of slides
+        const slider = document.getElementById('slider');
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        // Right arrow functionality
+        document.getElementById('right-arrow').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        });
+
+        // Left arrow functionality
+        document.getElementById('left-arrow').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        });
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

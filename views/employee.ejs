@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/employee.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <title>Document</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="user-profile">
+            <a href="">
+                <img src="user-avatar.jpg" alt="" class="avatar">
+            </a>
+        </div>
+        <ul class="menu">
+            <li><a href="#" onclick="showContainer('profilecontainer')"><i class="fa-solid fa-user"></i> <span>Profile Info</span></a></li>
+            <li><a href="#" onclick="showContainer('salarycontainer')"><i class="fa-solid fa-comment-dollar"></i></i> <span>Salary Section</span></a></li>
+            <li><a href="#" onclick="showContainer('employmentcontainer')"><i class="fa-solid fa-person-walking-luggage"></i> <span>Employment Info</span></a></li>
+            <li><a href="#" onclick="showContainer('leavecontainer')"><i class="fa-solid fa-circle-left"></i> <span>Leaves</span></a></li>
+            <li><a href="#" onclick="showContainer('leavereqcontainer')"><i class="fa-solid fa-bell"></i> <span>Leaves Request</span></a></li>
+            <li><a href="#" onclick="showContainer('holidayscontainer')"><i class="fa-solid fa-calendar-check"></i> <span>Holidays</span></a></li>
+            <li class="logout"><a href="/signin"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+        </ul>
+    </div>
+    <div id="profilecontainer" class="profilecontainer ">
+        <form action="" method="post">
+            <h1>Personal Information</h1>
+            <div class="input-container">
+                <input type="text" name="last" placeholder="Last Name" required>
+                <input type="text" name="number" placeholder="Contact Number" required>
+                <input type="text" name="first" placeholder="First Name" required>
+                <input type="text" name="emernumber" placeholder="Emergency Number" required>
+                <input type="text" name="middle" placeholder="Middle Name" required>
+                <input type="text" name="address" placeholder="Address" required>
+                <input type="date" name="dob" placeholder="Date of Birth" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <select id="gender" name="gender" class="styled-select" required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Feamle">Female</option>      
+                </select>
+                <input type="text" name="idnum" placeholder="ID Number" required>
+                <select id="status" name="status" class="styled-select" required>
+                    <option value="" disabled selected>Marital Status</option>
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="Widowed">Widowed</option>      
+                </select>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" name="update" id="update-button">Update</button>
+        </form>
+    </div>
+
+    <div id="employmentcontainer" class="employmentcontainer hidden">
+        <form action="" method="post">
+            <h1>Employment Information</h1>
+            <div class="input-grid">
+                <div class="form-group">
+                    <label for="idnum">ID Number</label>
+                    <input type="text" name="idnum" placeholder="ID Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="employmenttype">Employment Type</label>
+                    <select id="employmenttype" name="employmenttype" class="styled-select" required>
+                        <option value="" disabled selected>Employment Type</option>
+                        <option value="Full-Time">Full-Time</option>
+                        <option value="Part-Time">Part-Time</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Temporary">Temporary</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <select id="department" name="department" class="styled-select" required>
+                        <option value="" disabled selected>Select Department</option>
+                        <option value="Sales Department">Sales Department</option>
+                        <option value="Service Department">Service Department</option>
+                        <option value="Parts Department">Parts Department</option>
+                        <option value="Finance and Accounting Department">Finance and Accounting Department</option>
+                        <option value="Marketing Department">Marketing Department</option>
+                        <option value="Human Resources Department">Human Resources Department</option>
+                        <option value="Customer Relations Department">Customer Relations Department</option>
+                        <option value="Logistics and Transport Department">Logistics and Transport Department</option>
+                        <option value="IT Department">IT Department</option>
+                        <option value="Security Department">Security Department</option>
+                        <option value="Cleaning Department">Cleaning Department</option>                  
+                    </select>
+    
+                </div>
+                <div class="form-group">
+                    <label for="hireDate">Date of Hire</label>
+                    <input type="date" name="hireDate" placeholder="Date of Hire" required>
+                </div>
+                <div class="form-group">
+                    <label for="position">Position</label>
+                    <select id="position" name="position" class="styled-select" required>
+                        <option value="" disabled selected>Select Position</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="rate">Salary Rate</label>
+                    <input type="text" name="rate" placeholder="Salary Rate" required>
+                </div>
+            </div>
+    
+            <h1>Bank Information</h1>
+            <div class="input-grid">
+                <div class="form-group">
+                    <label for="bankname">Bank Name</label>
+                    <input type="text" name="bankname" placeholder="Bank Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="accountname">Account Holder Name</label>
+                    <input type="text" name="accountname" placeholder="Account Holder Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="accountnum">Account Number</label>
+                    <input type="text" name="accountnum" placeholder="Account Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="routingnum">Routing Number</label>
+                    <input type="text" name="routingnum" placeholder="Routing Number" required>
+                </div>
+            </div>
+            <button type="submit" name="save" id="save-button">Save</button>
+        </form>
+    </div>
+    
+
+    <div id="leavecontainer" class="leavecontainer hidden">
+        <form action="" method="post" class="leave-form">
+            <h1>Leave Application</h1>
+            <div class="input-container">
+                <label for="subject">Leave Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Enter Leave Subject" required>
+                <label for="type">Leave Type</label>
+                <select id="leaveType" name="leaveType">
+                    <option value="">Select Leave Type</option>
+                    <option value="sick">Sick Leave</option>
+                    <option value="casual">Casual Leave</option>
+                    <option value="annual">Annual Leave</option>
+                    <option value="maternity">Maternity Leave</option>
+                    <option value="paternity">Paternity Leave</option>
+                    <option value="unpaid">Unpaid Leave</option>
+                </select>
+                <div id="single-date-field" class="date-field">
+                    <label for="leavedate">Leave Date</label>
+                    <input type="date" id="leavedate" name="leavedate">
+                </div>
+                <div id="single-date-field" class="date-field">
+                    <label for="enddate">End of Leave Date</label>
+                    <input type="date" id="enddate" name="enddate">
+                </div>
+                <label for="message">Leave Message</label>
+                <textarea id="message" name="message" placeholder="Enter Leave Message or Details" required></textarea>
+            </div>
+            <button type="submit" name="submit" id="submit-button">Submit Leave Application</button>
+        </form>
+    </div>
+
+    <div id="leavereqcontainer" class="leavereqcontainer hidden">
+        <form action="" method="post" class="leave-form">
+            <h1>Leaves Request</h1>
+            <!-- Search bar with icon button -->
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search Leave Requests">
+                <button type="button" id="search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+            <!-- Table -->
+            <table id="requesttable" class="requesttable-display">
+                <thead>
+                    <tr>
+                        <th>Leave Subject</th>
+                        <th>Leave Type</th>
+                        <th>Leave Date</th>
+                        <th>End of Leave Date</th>
+                        <th>Leave Message</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populate table rows dynamically -->
+                </tbody>
+            </table>
+            <!-- Pagination controls -->
+            <div class="pagination">
+                <button class="page-btn" id="prev-btn">Previous</button>
+                <span id="page-info">Page 1 of X</span>
+                <button class="page-btn" id="next-btn">Next</button>
+            </div>
+        </form>
+    </div>
+    
+    
+    <div id="holidayscontainer" class="holidayscontainer hidden">
+        <form action="" method="post" class="holidays-form">
+            <h1>Holidays</h1>
+            <table id="requesttable" class="requesttable-display" >
+                <thead>
+                    <tr>
+                        <th>Holiday Title</th>
+                        <th>Holiday Description</th>
+                        <th>Holiday Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                </tbody>
+
+            </table>
+        </form>
+    </div>
+    <script src="/script/employee.js"></script>
+</body>
+</html>
