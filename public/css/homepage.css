@@ -1,51 +1,36 @@
-body, html {
-    margin: 0;
-    padding: 0;
+/* homepage.css */
+
+/* General body styles */
+body {
     font-family: Arial, sans-serif;
-    overflow: hidden; /* Prevent scrolling */
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #f8f9fa; 
 }
 
+/* Slider container styles */
 .slider-container {
     position: relative;
-    width: 80vw;  
-    height: 80vh; 
-    max-width: 1200px; 
     overflow: hidden;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 400px; 
 }
 
+/* Slider wrapper styles */
 .slider-wrapper {
     display: flex;
-    width: 200%;  
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease;
+    height: 100%; 
 }
 
+/* Slide styles */
 .slide {
-    min-width: 100%;  /* Each slide takes up the full width */
+    min-width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-}
-
-h1 {
-    font-size: 3rem;
-    color: #333;
-}
-
-p {
-    font-size: 1.5rem;
-    color: #666;
+    justify-content: center;
+    color: rgb(255, 255, 255); 
+    background-color: rgb(116, 9, 56); 
+    padding: 20px;
 }
 
 /* Arrow styles */
@@ -53,49 +38,148 @@ p {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 48px;
-    color: #333;
+    font-size: 30px;
+    color: rgb(222, 124, 125); 
     cursor: pointer;
-    user-select: none;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-    border-radius: 50%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
 }
 
 .left {
-    left: 15px;
-    display: none;
-    
-    
+    left: 10px;
 }
 
 .right {
-    right: 15px;
+    right: 10px;
 }
 
-.arrow:hover {
-    color: #007bff;
-    background-color: rgba(255, 255, 255, 1);
-    transition: background-color 0.3s ease;
+
+#features {
+    background-color: rgb(175, 23, 64); 
+    color: rgb(255, 255, 255); 
+    padding: 60px 0;
 }
 
-.btn-signup {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    color: #fff;
-    background-color: #007bff;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+.card {
+    background-color: rgb(222, 124, 125); 
+    border: none;
+    transition: transform 0.3s;
+    color: #100101;
 }
 
-.btn-signup:hover {
-    background-color: #0056b3;
+.card:hover {
+    transform: scale(1.05); 
 }
-body{
-    background: rgb(255,255,255);
-    background: linear-gradient(90deg, rgba(255,255,255,1) 1%, rgba(84,119,255,1) 100%);
+
+#testimonials {
+    background-color: rgb(204, 43, 82); 
+    color: #000; 
+    padding: 60px 0;
+}
+
+#testimonials h2 {
+    color: rgb(7, 0, 0); 
+    margin-bottom: 30px; 
+}
+
+blockquote {
+    background-color: rgba(222, 124, 125, 0.3); 
+    border-left: 5px solid rgb(175, 23, 64); 
+    padding: 20px; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 20px; 
+}
+/* Contact section styles */
+#contact {
+    background-color: #F8F1F1; 
+    padding: 50px 0;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 45vh; 
+}
+
+.container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    width: 100%; 
+    max-width: 800px; 
+}
+
+#contact .card {
+    width: 100%;
+    max-width: 405px;
+    background-color: #F5F7F8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 8px;
+    text-align: center; 
+}
+
+#contact h2 {
+    text-align: center; 
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#contact .form-group {
+    text-align: left; 
+}
+
+#contact .form-control {
+    padding: 10px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.btn-primary {
+    background-color: rgb(116, 9, 56);
+    border: none;
+    color: rgb(222, 124, 125);
+    margin-top: 20px; 
+    padding: 10px 20px; 
+}
+
+.btn-primary:hover {
+    background-color: rgb(175, 23, 64); 
+}
+
+
+@media (max-width: 768px) {
+    .slide h1 {
+        font-size: 2em;
+    }
+    .slide p {
+        font-size: 1.2em;
+    }
+    #contact .card {
+        width: 90%; 
+        max-width: 400px; 
+    }
+}
+footer {
+    font-size: 10px;
+    color: white; 
+}
+
+.connect-links .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.connect-links .btn-primary {
+    background-color: blue; 
+    border: none;
+    color: white; 
+}
+
+.connect-links .btn-primary:hover {
+    background-color: white; 
+}
+footer h3 {
+    font-size: 20px; 
+    margin: 0; 
 }

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payroll System - Homepage</title>
     <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="slider-container">
@@ -16,7 +18,7 @@
             <!-- Home Section -->
             <section class="slide">
                 <h1>Welcome to the Payroll System</h1>
-                <p>This is the homepage of your Payroll System built with Node.js.</p>
+                <p>Streamline your payroll processes and ensure accuracy and compliance.</p>
                 <a href="/signup" class="btn btn-primary btn-signup">Sign Up</a>
             </section>
 
@@ -31,26 +33,138 @@
         <div class="arrow right" id="right-arrow">&#10095;</div>
     </div>
 
-    <script>
-        // JavaScript to handle sliding effect
-        let currentSlide = 0;
+    <!-- Features Section -->
+    <section id="features" class="my-5">
+        <div class="container">
+            <h2 class="text-center">Features</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Automated Payroll</h5>
+                            <p class="card-text">Automatically calculate salaries, taxes, and deductions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Tax Compliance</h5>
+                            <p class="card-text">Stay compliant with the latest tax laws and regulations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Secure Data</h5>
+                            <p class="card-text">Ensure the safety of your employees' sensitive information.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="my-5 bg-light">
+        <div class="container">
+            <h2 class="text-center">What Our Clients Say</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <blockquote class="blockquote">
+                        <p class="mb-0">Using this payroll system has simplified our processes tremendously!</p>
+                        <footer class="blockquote-footer">Jane Smith, <cite title="Source Title">CEO of XYZ Corp</cite></footer>
+                    </blockquote>
+                </div>
+                <div class="col-md-6">
+                    <blockquote class="blockquote">
+                        <p class="mb-0">I love the automated features; it saves us so much time!</p>
+                        <footer class="blockquote-footer">John Doe, <cite title="Source Title">HR Manager at ABC Ltd</cite></footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        <section id="contact" class="my-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Contact Us</h2>
+                <div class="card p-4">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Your Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Your Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" rows="3" placeholder="Your Message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+        </section>        
+
+    <script>
+        let currentSlide = 0;
+    
         // Get the slider and the total number of slides
         const slider = document.getElementById('slider');
         const totalSlides = document.querySelectorAll('.slide').length;
-
+    
+        const leftArrow = document.getElementById('left-arrow');
+        const rightArrow = document.getElementById('right-arrow');
+    
+        function updateArrows() {
+            // Hide left arrow on the first slide
+            if (currentSlide === 0) {
+                leftArrow.style.display = 'none';
+            } else {
+                leftArrow.style.display = 'block';
+            }
+    
+            // Hide right arrow on the last slide
+            if (currentSlide === totalSlides - 1) {
+                rightArrow.style.display = 'none';
+            } else {
+                rightArrow.style.display = 'block';
+            }
+        }
+    
+        // Initialize arrows display
+        updateArrows();
+    
         // Right arrow functionality
-        document.getElementById('right-arrow').addEventListener('click', () => {
+        rightArrow.addEventListener('click', () => {
             currentSlide = (currentSlide + 1) % totalSlides;
             slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateArrows();
         });
-
+    
         // Left arrow functionality
-        document.getElementById('left-arrow').addEventListener('click', () => {
+        leftArrow.addEventListener('click', () => {
             currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
             slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateArrows();
         });
     </script>
+
+    <!-- Footer Section -->
+<footer class="text-center mt-5" style="background-color: rgb(116, 9, 56); padding: 20px 0;">
+    <h3 class="text-white">Connect with Us</h3>
+    <div class="connect-links mt-3">
+        <a href="https://www.facebook.com/isuzuphilippines" target="_blank" class="btn btn-primary mx-2">
+            <i class="fab fa-facebook-f"></i> Facebook
+        </a>
+        <a href="mailto:izuzu@gmail.com" class="btn btn-primary mx-2">
+            <i class="fas fa-envelope"></i> Email Us
+        </a>
+    </div>
+</footer>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
