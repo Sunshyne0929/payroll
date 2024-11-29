@@ -13,7 +13,10 @@
     <style>
         .hidden {
         display: none;
-}
+        }
+        #employeeinformation.hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -32,83 +35,210 @@
         </ul>
     </div>
     <div id="employeecontainer" class="employeecontainer">
-        <form action="" method="post" class="holidays-form">
-            <h1>Employees Section</h1>
-            <table id="requesttable" class="requesttable-display" >
-                <thead>
-                    <tr>
-                        <th>ID Number</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Contact</th>
-                        <th>Account Number</th>
-                        <th>DOB</th>
-                        <th>Date of Hire</th>
-                        <th>Employment Type</th>
-                        <th>DOB</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                
-                </tbody>
-
-            </table>
+        <h1>Employees Section</h1>
+        <form method="GET" action="/admin/employees">
+            <label for="department">Select Department:</label>
+            <select name="departmentName" id="department" onchange="this.form.submit()">
+                <option value="">-- Select Department --</option>
+                <% departments.forEach(department => { %>
+                    <option value="<%= department %>"><%= department %></option>
+                <% }) %>
+            </select>
         </form>
+        
+        <table id="requesttable" class="requesttable-display">
+            <thead>
+                <tr>
+                    <th>ID Number</th>
+                    <th>Last Name</th>
+                    <th>Middle Name</th>
+                    <th>First Name</th>
+                    <th>DOB</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (employees && employees.length) { %>
+                    <% employees.forEach(employee => { %>
+                        <tr>
+                            <td><a href="#" class="id-link" data-id="<%= employee.id_number %>" data-lastname="<%= employee.last_name %>" data-middlename="<%= employee.middle_name %>" data-firstname="<%= employee.first_name %>" data-dob="<%= employee.dob %>"> <%= employee.id_number %></a></td>
+                            <td><%= employee.last_name %></td>
+                            <td><%= employee.middle_name %></td>
+                            <td><%= employee.first_name %></td>
+                            <td><%= new Date(employee.dob).toLocaleDateString() %></td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="5">No employees found.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
     </div>
-
+    
+    <div id="employeeinformation" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <form id="employeeinformationForm">
+                <h2>Personal Information</h2>
+                <label for="idNumber">ID Number:</label>
+                <input type="text" id="idNumber" name="idNumber" readonly>
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" readonly>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" readonly>
+                <label for="middleName">Middle Name:</label>
+                <input type="text" id="middleName" name="middleName" readonly>
+                <label for="dob">DOB:</label>
+                <input type="text" id="dob" name="dob" readonly>
+                <label for="gender">Gender:</label>
+                <input type="text" id="gender" name="gender" readonly>
+                <label for="status">Status:</label>
+                <input type="text" id="status" name="status" readonly>
+                <label for="contactNumber">Contact Number:</label>
+                <input type="text" id="contactNumber" name="contactNumber" readonly>
+                <label for="emergencyNumber">Emergency Number:</label>
+                <input type="text" id="emergencyNumber" name="emergencyNumber" readonly>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" readonly>
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" readonly>
+    
+                <h2>Employment Information</h2>
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="department" readonly>
+                <label for="position">Position:</label>
+                <input type="text" id="position" name="position" readonly>
+                <label for="employmentType">Employment Type:</label>
+                <input type="text" id="employmentType" name="employmentType" readonly>
+                <label for="dateOfHire">Date of Hire:</label>
+                <input type="text" id="dateOfHire" name="dateOfHire" readonly>
+                <label for="salaryRate">Salary Rate:</label>
+                <input type="text" id="salaryRate" name="salaryRate" readonly>
+    
+                <h2>Bank Information</h2>
+                <label for="bankName">Bank Name:</label>
+                <input type="text" id="bankName" name="bankName" readonly>
+                <label for="accountHolderName">Account Holder Name:</label>
+                <input type="text" id="accountHolderName" name="accountHolderName" readonly>
+                <label for="accountNumber">Account Number:</label>
+                <input type="text" id="accountNumber" name="accountNumber" readonly>
+                <label for="routingNumber">Routing Number:</label>
+                <input type="text" id="routingNumber" name="routingNumber" readonly>
+            </form>
+        </div>
+    </div>
+    
+    
     <div id="leavereqcontainer" class="leavereqcontainer hidden">
+        <h1>Request</h1>
         <form action="" method="post" class="holidays-form">
-            <h1>Leaves Request Section</h1>
-            <table id="requesttable" class="requesttable-display" >
+            <table id="requesttable" class="requesttable-display">
                 <thead>
                     <tr>
                         <th>Leave Subject</th>
                         <th>Leave Type</th>
                         <th>Leave Date</th>
                         <th>End of Leave Date</th>
-                        <th>Leave Message</th>
-                        <th>Action
-                        </th>
+                        <th>Message</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                
-                </tbody>
-
-            </table>
-        </form>
-    </div>
-
-    <div id="holidayscontainer" class="holidayscontainer hidden">
-        <form action="" method="post" class="holidays-form">
-            <h1>Holidays</h1>
-            <button type="button" id="add-holiday-btn" class="add-holiday-btn">
-                <i class="fa-solid fa-plus"></i> Add Holiday
-            </button>
-            <div class="search-add-container">
-                <div class="search-container">
-                    <input type="text" id="search" placeholder="Search Leave Requests">
-                    <button type="button" id="search-btn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-            </div>
-            <table id="requesttable" class="requesttable-display">
-                <thead>
-                    <tr>
-                        <th>Holiday Title</th>
-                        <th>Holiday Description</th>
-                        <th>Holiday Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Holiday entries will be populated here -->
+                    <% if (leaveRequests && leaveRequests.length) { %>
+                        <% leaveRequests.forEach(leave => { %>
+                            <tr>
+                                <td><%= leave.subject %></td>
+                                <td><%= leave.leave_type %></td>
+                                <td><%= new Date(leave.leave_date).toLocaleDateString() %></td>
+                                <td><%= new Date(leave.end_date).toLocaleDateString() %></td>
+                                <td><%= leave.message %></td>
+                                <td>
+                                    <button type="button" class="approve-btn" data-id="<%= leave.id %>">Approve</button>
+                                    <button type="button" class="deny-btn" data-id="<%= leave.id %>">Deny</button>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6">No leave requests found.</td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
         </form>
     </div>
     
+    <div id="holidayscontainer" class="holidayscontainer hidden">
+        <h1>Holidays</h1>
+        <form action="" method="post" class="holidays-form">
+            <button type="button" id="add-holiday-btn" class="add-holiday-btn">
+                <i class="fa-solid fa-plus"></i> Add Holiday
+            </button>
+            <div class="search-add-container">
+                <div class="search-container">
+                    <input type="text" id="search" placeholder="Search Holidays">
+                    <button type="button" id="search-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+            <table id="holidaytable" class="holidaytable-display">
+                <thead>
+                    <tr>
+                        <th>Holiday Title</th>
+                        <th>Holiday Description</th>
+                        <th>Start Date</th> <!-- Updated to show start date -->
+                        <th>End Date</th> <!-- New column for end date -->
+                        <th>Created At</th> <!-- New column for created_at -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (holidays && holidays.length) { %>
+                        <% holidays.forEach(holiday => { %>
+                            <tr>
+                                <td><%= holiday.title %></td>
+                                <td><%= holiday.description %></td>
+                                <td><%= new Date(holiday.start_date).toLocaleDateString() %></td> <!-- Start Date -->
+                                <td><%= new Date(holiday.end_date).toLocaleDateString() %></td> <!-- End Date -->
+                                <td><%= new Date(holiday.created_at).toLocaleDateString() %></td> <!-- Created At -->
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="5">No holidays found.</td> <!-- Adjusted colspan to 5 -->
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    
+        <!-- Add Holiday Modal -->
+        <div id="addHolidayModal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Add Holiday</h2>
+                <form id="addHolidayForm">
+                    <label for="holidayTitle">Holiday Title:</label>
+                    <input type="text" id="holidayTitle" name="holidayTitle" required>
+                    
+                    <label for="holidayDescription">Holiday Description:</label>
+                    <textarea id="holidayDescription" name="holidayDescription" required></textarea>
+                    
+                    <label for="holidayDate">Holiday Date:</label>
+                    <input type="date" id="holidayDate" name="holidayDate" required>
+    
+                    <label for="endDate">End of Holiday Date:</label>
+                    <input type="date" id="endDate" name="endDate" required>
+                    
+                    <button type="submit">Save Holiday</button>
+                </form>
+            </div>
+        </div>   
+
+    
     <script src="/script/admin.js"></script>
+    
 </body>
 </html>
